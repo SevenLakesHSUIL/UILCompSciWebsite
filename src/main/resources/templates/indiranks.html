@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/navbar :: common-navbar"/>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h3 class="display-3">Individual Leaderboards</h3>
+        <p class="lead">Note: Leaderboards may not be 100% accurate and do not accurately reflect ties.</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Novice Rankings:</h4>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">School</th>
+                    <th scope="col">Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="person, personStat : ${noviceRanks}">
+                    <tr>
+                        <td th:text="${personStat.count}">1</td>
+                        <td th:text="${person.name}">Quy Nguyen</td>
+                        <td th:text="${person.school}">Seven Lakes High School</td>
+                        <td th:text="${person.score}">120</td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h4>Advanced Rankings:</h4>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">School</th>
+                    <th scope="col">Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="person, personStat : ${advancedRanks}">
+                    <tr>
+                        <td th:text="${personStat.count}">1</td>
+                        <td th:text="${person.name}">Quy Nguyen</td>
+                        <td th:text="${person.school}">Seven Lakes High School</td>
+                        <td th:text="${person.score}">120</td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

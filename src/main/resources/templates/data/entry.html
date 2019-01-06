@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+
+<head>
+    <div th:include="common/header :: common-header" th:remove="tag"/>
+    <link href="../static/css/login.css" rel="stylesheet" th:href="@{/css/login.css}"/>
+</head>
+
+<body>
+    <div th:replace="common/navbar :: common-navbar"/>
+
+    <form action="#" th:action="@{/data/entry}" th:object="${curTeam}" method="post">
+        <input type="text" th:field="*{school}" readonly/>
+        <td th:text="${#lists.size(individuals)}">[SSINI]</td>
+        <th:block th:each="indi, indiStat : *{individuals}">
+        </th:block>
+    </form>
+</body>
+
+
+</body>
+</html>
