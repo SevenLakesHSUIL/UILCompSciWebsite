@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DataEntryController {
-    @GetMapping("/data/entry")
+    @GetMapping("/indientry")
     public String dataentry(Model model) {
-        return "data/entry";
+        return "indientry";
     }
 }

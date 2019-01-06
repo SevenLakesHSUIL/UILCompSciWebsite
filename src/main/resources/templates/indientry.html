@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: common-header"/>
+
+<body>
+    <div th:replace="common/navbar :: common-navbar"/>
+    <div class="container">
+		<div class="text-center m-3">
+			<button onclick="senddata();" class="btn btn-lg btn-success">Save</button>
+		</div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Data Entry:</h4>
+                <table class="table table-striped table-hover" id="entrytable">
+                    <thead class="thead-dark">
+						<!-- Filters -->
+						<tr>
+							<th scope="col">Filters</th>
+							<th scope="col"><input id="teamnum" class="form-control" type="number" onchange="filter();"></th>
+							<th scope="col"><input id="schoolname" class="form-control" type="text" onchange="filter();"></th>
+							<th scope="col"><input id="studentname" class="form-control" type="text" onchange="filter();"></th>
+							<th scope="col">N/A</th>
+							<th scope="col">
+								<select id="aon" class="form-control" onchange="filter();">
+									<option value="All" selected>All</option>
+									<option value="A">A</option>
+									<option value="N">N</option>
+								</select>
+							</th>
+						</tr>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Team Number</th>
+							<th scope="col">School Name</th>
+							<th scope="col">Student Name</th>
+							<th scope="col">Written Score</th>
+							<th scope="col">Adv or Nov?</th> 
+						</tr>
+                    </thead>
+                    <tbody>
+						<tr>
+							<td>1</td>
+							<td>73</td>
+							<td>Seven Lakes High School</td>
+							<td>Quy Nguyen</td>
+							<td><input type="number" class="form-control" value="INSERT THEIR SCORE HERE OR LEAVE BLANK IF SCORE NOT YET ENTERED"></td>
+							<td>A</td>
+						</tr>
+					<!-- Not sure how this part works but here's what you should do to 
+						make sure the filter works as intended: 
+						- Keep the same format for each individual
+						- Add in all the information for each of the columns
+						- For indicating Advanced or Novice put an 'A' or an 'N'
+						-->
+                    <th:block th:each="person, personStat : ${noviceRanks}">
+                        <tr>
+							<td th:text="${personStat.count}">1</td>
+							<td th:text="${personStat.???}">73</td>
+							<td th:text="${person.school}">Seven Lakes High School</td>
+							<td th:text="${person.name}">Quy Nguyen</td>
+							<td><input type="number" class="form-control" value="INSERT THEIR SCORE HERE OR LEAVE BLANK IF SCORE NOT YET ENTERED"></td>
+							<td th:text="${person.???}">A</td>
+						</tr>
+                    </th:block>
+                    </tbody>
+                </table>
+				<script>
+					function filter() {
+						var tn = $("#teamnum").val();
+						var sn = $("#schoolname").val();
+						var stn = $("#studentname").val();
+						var aon = $("#aon").val();
+						// Gets the filters from the inputs
+						
+						// Goes through each row and checks to see if the info matches the filters
+						$("#entrytable tbody tr").each(function() {
+							var stdata = [];
+							$(this).children("td").each(function(i) {
+								stdata[i] = $(this).html();
+							});
+							if ((tn === "" || tn == stdata[1]) && (sn === "" || stdata[2].includes(sn)) && (stn === "" || stdata[3].includes(stn)) && (aon == "All" || stdata[5] == aon)) 
+								$(this).show();
+							else
+								$(this).hide();
+						});
+					}
+					
+					function senddata() {
+						// All of the table data will be stored in this array 
+						// and can be passed back to the server for changing the sql database
+						// Server has to parse through and change the data for each individual given
+						
+						var data = [];
+						$("#entrytable tbody tr").each(function() {
+							var stdata = [];
+							$(this).children("td").each(function(i) {
+								if (i == 4)
+									stdata[i] = $(this).children("input").val();
+								else
+									stdata[i] = $(this).html();
+							});
+							if ($(this).is(":visible") && stdata[4] != "")
+								data.push(stdata);
+						});
+						console.log(data); // Test if data is collected correctly
+						
+						// Quy, somehow send that array back to server for processing....
+					}
+				</script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
