@@ -1,6 +1,8 @@
 package main.data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -9,10 +11,10 @@ public class Individual implements Comparable<Individual> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Min(-80)
+    @Max(240)
     private int score;
 
-    @NotBlank
-    private String school;
     @NotNull
     private String name;
 
@@ -21,26 +23,17 @@ public class Individual implements Comparable<Individual> {
     private Division division;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "team_id")
     public Team team;
 
     private Individual() {
     }
 
-    Individual(String school, String name, Team team, Division division) {
-        this.school = school;
+    Individual(String name, Team team, Division division) {
         this.name = name;
         this.team = team;
         this.division = division;
-    }
-
-    public String getSchool() {
-        return school;
-    }
-
-    void setSchool(String school) {
-        this.school = school;
     }
 
     public Division getDivision() {
@@ -63,7 +56,7 @@ public class Individual implements Comparable<Individual> {
         return score;
     }
 
-    void setScore(int score) {
+    public void setScore(int score) {
         this.score = score;
     }
 

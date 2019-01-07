@@ -24,15 +24,15 @@ public class StartupInit implements ApplicationListener<ContextRefreshedEvent> {
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        userRepository.saveAndFlush(new User("a", "a", true));
+        userRepository.save(new User("a", "a", true));
         Team t = new Team(1, "a", "SLHS", Division.NOVICE);
         t.getIndividuals().get(0).setName("Bob");
         t.getIndividuals().get(1).setName("Sam");
         teamRepository.save(t);
         t = new Team(2, "a", "SLHS", Division.ADVANCED);
         t.getIndividuals().get(0).setName("Bob");
+        t.getIndividuals().get(0).setScore(5);
         t.getIndividuals().get(1).setName("Sam");
         teamRepository.save(t);
-        teamRepository.flush();
     }
 }

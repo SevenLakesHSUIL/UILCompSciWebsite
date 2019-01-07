@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 @Controller
 public class IndividualLeaderboardController {
     private IndividualRepository individualRepository;
@@ -22,10 +20,10 @@ public class IndividualLeaderboardController {
 
     @GetMapping("/indiranks")
     public String indiranks(Model model) {
-        List<Individual> noviceRanks = individualRepository.findByDivisionAndExists(Division.NOVICE, sortByScoreDesc());
+        Iterable<Individual> noviceRanks = individualRepository.findByDivisionAndExists(Division.NOVICE, sortByScoreDesc());
         model.addAttribute("noviceRanks", noviceRanks);
 
-        List<Individual> advancedRanks = individualRepository.findByDivisionAndExists(Division.ADVANCED, sortByScoreDesc());
+        Iterable<Individual> advancedRanks = individualRepository.findByDivisionAndExists(Division.ADVANCED, sortByScoreDesc());
         model.addAttribute("advancedRanks", advancedRanks);
 
         return "indiranks";

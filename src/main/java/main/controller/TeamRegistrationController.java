@@ -1,7 +1,6 @@
 package main.controller;
 
 import main.data.Division;
-import main.data.Individual;
 import main.data.Team;
 import main.data.persistence.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +10,12 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.Locale;
 
 @Controller
 @RequestMapping("/team/register")
 @SessionAttributes("team")
 public class TeamRegistrationController {
-
-    private TeamRepository teamRepository;
+    private final TeamRepository teamRepository;
 
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -40,7 +37,7 @@ public class TeamRegistrationController {
 
     @PostMapping
     public String teamregister(@ModelAttribute Team team) {
-        teamRepository.saveAndFlush(team);
+        teamRepository.save(team);
         return "redirect:/";
     }
 }

@@ -3,14 +3,16 @@ package main.data.persistence;
 import main.data.Division;
 import main.data.Team;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
-public interface TeamRepository extends JpaRepository<Team, Integer> {
+@Repository
+@Transactional
+public interface TeamRepository extends PagingAndSortingRepository<Team, Integer> {
     Team findById(int id);
     Team findByUsername(String username);
-    List<Team> findBySchool(String school);
-    List<Team> findByDivision(Division division);
-    List<Team> findByDivision(Division division, Sort sort);
+    Iterable<Team> findBySchool(String school);
+    Iterable<Team> findByDivision(Division division);
+    Iterable<Team> findByDivision(Division division, Sort sort);
 }

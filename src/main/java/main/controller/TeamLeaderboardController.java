@@ -9,11 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-
 @Controller
 public class TeamLeaderboardController {
-    private TeamRepository teamRepository;
+    private final TeamRepository teamRepository;
 
     @Autowired
     public TeamLeaderboardController(TeamRepository teamRepository) {
@@ -22,10 +20,10 @@ public class TeamLeaderboardController {
 
     @GetMapping("/teamranks")
     public String teamranks(Model model) {
-        List<Team> noviceRanks = teamRepository.findByDivision(Division.NOVICE, sortByScoreDesc());
+        Iterable<Team> noviceRanks = teamRepository.findByDivision(Division.NOVICE, sortByScoreDesc());
         model.addAttribute("noviceRanks", noviceRanks);
 
-        List<Team> advancedRanks = teamRepository.findByDivision(Division.ADVANCED, sortByScoreDesc());
+        Iterable<Team> advancedRanks = teamRepository.findByDivision(Division.ADVANCED, sortByScoreDesc());
         model.addAttribute("advancedRanks", advancedRanks);
         return "teamranks";
     }

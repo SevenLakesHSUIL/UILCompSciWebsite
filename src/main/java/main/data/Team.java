@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,6 +20,7 @@ public class Team extends UserDetailsImpl implements Comparable<Team> {
     private int id;
     @NotBlank
     private String school;
+    @Min(0)
     private int score;
 
     @Enumerated(EnumType.STRING)
@@ -26,7 +28,7 @@ public class Team extends UserDetailsImpl implements Comparable<Team> {
     private Division division;
 
     @NotNull
-    @Size(max=3)
+    @Size(max = 3)
     @OneToMany(
             mappedBy = "team",
             cascade = CascadeType.ALL,
@@ -44,8 +46,8 @@ public class Team extends UserDetailsImpl implements Comparable<Team> {
         this.division = division;
         this.individuals = new ArrayList<>(3);
 
-        for(int i = 0; i < 3; i++) {
-            individuals.add(new Individual(school, "", this, division));
+        for (int i = 0; i < 3; i++) {
+            individuals.add(new Individual("", this, division));
         }
     }
 
@@ -59,9 +61,6 @@ public class Team extends UserDetailsImpl implements Comparable<Team> {
 
     public void setSchool(String school) {
         this.school = school;
-        for(Individual i : individuals) {
-            i.setSchool(school);
-        }
     }
 
     public int getScore() {
@@ -82,14 +81,14 @@ public class Team extends UserDetailsImpl implements Comparable<Team> {
 
     public void setDivision(Division division) {
         this.division = division;
-        for(Individual i : individuals) {
+        for (Individual i : individuals) {
             i.setDivision(division);
         }
     }
 
     @Override
     public int compareTo(Team o) {
-        if(o.score != score) {
+        if (o.score != score) {
             return Integer.compare(o.score, score);
         }
         return Integer.compare(id, o.id);

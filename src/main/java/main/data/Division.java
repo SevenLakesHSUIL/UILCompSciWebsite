@@ -2,7 +2,6 @@ package main.data;
 
 import org.springframework.format.Formatter;
 
-import java.text.ParseException;
 import java.util.Locale;
 
 public enum Division {
@@ -10,7 +9,7 @@ public enum Division {
 
     public static class DivisionFormatter implements Formatter<Division> {
         @Override
-        public Division parse(String text, Locale locale) throws ParseException {
+        public Division parse(String text, Locale locale) {
             throw new AssertionError();
 //            try {
 //                return Division.valueOf(text.toUpperCase());
