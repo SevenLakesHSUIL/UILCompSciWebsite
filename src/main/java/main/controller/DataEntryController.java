@@ -51,7 +51,7 @@ public class DataEntryController {
         return new Sort(Sort.Direction.ASC, "team.id");
     }
 
-    static class IndiEntryDTO {
+    private static class IndiEntryDTO {
         @Valid
         private List<Individual> individuals;
 

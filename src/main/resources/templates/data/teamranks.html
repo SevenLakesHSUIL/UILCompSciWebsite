@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="common/header :: common-header"/>
+
+<body>
+    <div th:replace="common/navbar :: common-navbar"/>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h3 class="display-3">Team Leaderboards</h3>
+            <p class="lead">Note: Leaderboards may not be 100% accurate and do not accurately reflect ties.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Novice Rankings:</h4>
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Team Number</th>
+                        <th scope="col">Team School</th>
+                        <th scope="col">Total Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="team, teamStat : ${noviceRanks}">
+                        <tr>
+                            <td th:text="${teamStat.count}">1</td>
+                            <td th:text="${team.id}">112</td>
+                            <td th:text="${team.school}">Seven Lakes High School</td>
+                            <td th:text="${team.score}">800</td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <h4>Advanced Rankings:</h4>
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Team Number</th>
+                        <th scope="col">Team School</th>
+                        <th scope="col">Total Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="team, teamStat : ${advancedRanks}">
+                        <tr>
+                            <td th:text="${teamStat.count}">1</td>
+                            <td th:text="${team.id}">112</td>
+                            <td th:text="${team.school}">Seven Lakes High School</td>
+                            <td th:text="${team.score}">1200</td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

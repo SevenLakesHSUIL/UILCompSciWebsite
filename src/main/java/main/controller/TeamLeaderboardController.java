@@ -1,6 +1,7 @@
 package main.controller;
 
 import main.data.Division;
+import main.data.Individual;
 import main.data.Team;
 import main.data.persistence.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.validation.constraints.NotBlank;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Controller
 public class TeamLeaderboardController {
@@ -18,17 +25,41 @@ public class TeamLeaderboardController {
         this.teamRepository = teamRepository;
     }
 
-    @GetMapping("/teamranks")
+    @GetMapping("/data/teamranks")
     public String teamranks(Model model) {
-        Iterable<Team> noviceRanks = teamRepository.findByDivision(Division.NOVICE, sortByScoreDesc());
+        Iterable<TeamTotalDTO> noviceRanks = stream(teamRepository.findByDivision(Division.NOVICE)).map(TeamTotalDTO::new).sorted(Comparator.comparingInt(TeamTotalDTO::getScore).thenComparing(TeamTotalDTO::getSchool)).collect(Collectors.toList());
         model.addAttribute("noviceRanks", noviceRanks);
 
-        Iterable<Team> advancedRanks = teamRepository.findByDivision(Division.ADVANCED, sortByScoreDesc());
+        Iterable<TeamTotalDTO> advancedRanks = stream(teamRepository.findByDivision(Division.ADVANCED)).map(TeamTotalDTO::new).sorted(Comparator.comparingInt(TeamTotalDTO::getScore).thenComparing(TeamTotalDTO::getSchool)).collect(Collectors.toList());
         model.addAttribute("advancedRanks", advancedRanks);
-        return "teamranks";
+        return "data/teamranks";
     }
 
-    private Sort sortByScoreDesc() {
-        return new Sort(Sort.Direction.DESC, "score");
+    private <T> Stream<T> stream(Iterable<T> iterable) {
+        return StreamSupport.stream(iterable.spliterator(), false);
+    }
+
+    private static class TeamTotalDTO {
+        private int score;
+        @NotBlank
+        private String school;
+        private int id;
+        private TeamTotalDTO(Team t) {
+            this.school = t.getSchool();
+            this.id = t.getId();
+            this.score = t.getScore() + t.getIndividuals().stream().mapToInt(Individual::getScore).sum();
+        }
+
+        public int getScore() {
+            return score;
+        }
+
+        public String getSchool() {
+            return school;
+        }
+
+        public int getId() {
+            return id;
+        }
     }
 }

@@ -13,16 +13,12 @@
                 <a class="btn btn-lg btn-primary mb-2" href="/downloads" role="button">Downloads &raquo;</a>
                 <a sec:authorize="hasAuthority('ROLE_TEAM')" class="btn btn-lg btn-primary mb-2" href="/team/register" role="button">Team Registration &raquo;</a>
                 <a sec:authorize="hasAuthority('ROLE_DATA')" class="btn btn-lg btn-primary mb-2" href="/data/entry" role="button">Data Entry &raquo;</a>
-                <a sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-lg btn-primary mb-2" href="/admin/settings" role="button">Admin Page &raquo;</a>
+                <a sec:authorize="hasAuthority('ROLE_DATA')" class="btn btn-lg btn-primary mb-2" href="/data/teamranks" role="button">Team Leaderboards &raquo;</a>
+                <!--<a sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-lg btn-primary mb-2" href="/admin/settings" role="button">Admin Page &raquo;</a>-->
                 <a sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-lg btn-primary mb-2" href="/h2/" role="button">Database Access &raquo;</a>
                 <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary mb-2" href="/login" role="button">Log In &raquo;</a>
             </p>
         </div>
-    </div>
-
-    <div th:fragment="logout" class="logout" sec:authorize="isAuthenticated()">
-        Logged in user: <span sec:authentication="name"></span> |
-        Roles: <span sec:authentication="principal.authorities"></span>
     </div>
 </body>
 </html>
