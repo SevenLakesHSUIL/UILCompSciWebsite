@@ -32,7 +32,8 @@ public class Team extends UserDetailsImpl implements Comparable<Team> {
     @OneToMany(
             mappedBy = "team",
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
     )
     private List<Individual> individuals;
 

@@ -18,7 +18,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/data/entry")
-@Validated
 @SessionAttributes("indiEntryDTO")
 public class DataEntryController {
     private final IndividualRepository individualRepository;
@@ -53,6 +52,7 @@ public class DataEntryController {
     }
 
     static class IndiEntryDTO {
+        @Valid
         private List<Individual> individuals;
 
         public IndiEntryDTO(Iterable<Individual> individuals) {
