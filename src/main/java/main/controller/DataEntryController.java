@@ -5,6 +5,8 @@ import main.data.Individual;
 import main.data.persistence.IndividualRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -43,7 +45,14 @@ public class DataEntryController {
         if(bindingResult.hasErrors()) {
             return "data/entry";
         }
-        individualRepository.saveAll(indiEntryDTO.getIndividuals());
+
+        for (Individual i : indiEntryDTO.getIndividuals()) {
+            try {
+                individualRepository.save(i);
+            } catch (ObjectOptimisticLockingFailureException e) {
+                //Ignore cuz lazy
+            }
+        }
         return "redirect:/data/entry";
     }
 

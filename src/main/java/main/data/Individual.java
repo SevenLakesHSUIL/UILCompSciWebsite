@@ -5,6 +5,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 public class Individual implements Comparable<Individual> {
@@ -26,6 +27,9 @@ public class Individual implements Comparable<Individual> {
     @ManyToOne
     @JoinColumn(name = "team_id")
     public Team team;
+
+    @Version
+    private LocalDateTime timestamp;
 
     private Individual() {
     }
@@ -66,6 +70,10 @@ public class Individual implements Comparable<Individual> {
 
     void setTeam(Team team) {
         this.team = team;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
     }
 
     @Override

@@ -6,15 +6,14 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.6.RELEASE'
 }
 
-group 'com.github.carbotaniuman'
-version '1.0-SNAPSHOT'
+group 'com.github.slhs-cs-uil'
+version '1.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 bootJar {
-    baseName = 'gs-serving-web-content'
-    version =  '0.1.0'
+    baseName = 'uilcompsciwebsite'
 }
 
 repositories {
