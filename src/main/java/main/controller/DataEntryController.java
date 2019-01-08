@@ -41,7 +41,7 @@ public class DataEntryController {
     }
 
     @PostMapping
-    public String teamregister(@Valid @ModelAttribute IndiEntryDTO indiEntryDTO, BindingResult bindingResult) {
+    public String dataentry(@Valid @ModelAttribute IndiEntryDTO indiEntryDTO, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             return "data/entry";
         }
