@@ -14,7 +14,7 @@
         <div class="navbar-nav navbar-right">
             <a sec:authorize="hasAuthority('ROLE_TEAM')" class="nav-item nav-link" href="/team/register">Team Registration</a>
             <a sec:authorize="hasAuthority('ROLE_DATA')" class="nav-item nav-link" href="/data/entry">Data Entry</a>
-            <a sec:authorize="hasAuthority('ROLE_DATA')" class="nav-item nav-link" href="/data/teamranks">Total Leaderboards</a>
+            <a sec:authorize="hasAuthority('ROLE_DATA')" class="nav-item nav-link" href="/data/teamranks">Team Leaderboards</a>
             <!--<a sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-item nav-link" href="/admin/settings">Admin Page</a>-->
             <a sec:authorize="hasAuthority('ROLE_ADMIN')" class="nav-item nav-link" href="/h2/">Database Access</a>
             <div sec:authorize="isAuthenticated()">
