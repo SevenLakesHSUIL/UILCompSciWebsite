@@ -21,12 +21,12 @@
                     <!-- Filters -->
                     <tr>
                         <th scope="col">Filters</th>
-                        <th scope="col"><input id="teamnum" class="form-control" type="number" onchange="filter();"></th>
-                        <th scope="col"><input id="schoolname" class="form-control" type="text" onchange="filter();"></th>
-                        <th scope="col"><input id="studentname" class="form-control" type="text" onchange="filter();"></th>
+                        <th scope="col"><input id="teamnum" class="form-control" type="number" oninput="filter();"></th>
+                        <th scope="col"><input id="schoolname" class="form-control" type="text" oninput="filter();"></th>
+                        <th scope="col"><input id="studentname" class="form-control" type="text" oninput="filter();"></th>
                         <th scope="col">N/A</th>
                         <th scope="col">
-                            <select id="aon" class="form-control" onchange="filter();">
+                            <select id="aon" class="form-control" oninput="filter();">
                                 <option value="All" selected>All</option>
                                 <option value="Advanced">Adv</option>
                                 <option value="Novice">Nov</option>
@@ -71,7 +71,7 @@
 							$(this).children("td").each(function(i) {
 								stdata[i] = $(this).html();
 							});
-							if ((tn === "" || tn == stdata[1]) && (sn === "" || stdata[2].includes(sn)) && (stn === "" || stdata[3].includes(stn)) && (aon == "All" || stdata[5] == aon))
+							if ((tn === "" || tn == stdata[1]) && (sn === "" || stdata[2].toUpperCase().includes(sn.toUpperCase())) && (stn === "" || stdata[3].toUpperCase().includes(stn.toUpperCase())) && (aon == "All" || stdata[5] == aon))
 								$(this).show();
 							else
 								$(this).hide();
