@@ -1,6 +1,5 @@
 package main.data.service;
 
-import main.data.User;
 import main.data.UserDetailsImpl;
 import main.data.persistence.UserDetailsImplRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     public UserDetailsServiceImpl(UserDetailsImplRepository userDetailsImplRepository) {
         this.userDetailsImplRepository = userDetailsImplRepository;
-        userDetailsImplRepository.save(new User("a", "a", true));
     }
 
     @Override
