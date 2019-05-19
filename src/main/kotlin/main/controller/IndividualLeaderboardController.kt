@@ -23,7 +23,5 @@ constructor(private val individualRepository: IndividualRepository) {
         return "indiranks"
     }
 
-    private fun sortByScoreDesc(): Sort {
-        return Sort(Sort.Direction.DESC, "score")
-    }
+    private fun sortByScoreDesc(): Sort = Sort(Sort.Direction.DESC, "score")
 }

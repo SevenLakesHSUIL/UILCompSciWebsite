@@ -35,9 +35,8 @@ class Individual internal constructor(@field:NotNull
         this.division = division
     }
 
-    override fun compareTo(other: Individual): Int {
-        return if (other.score != score) {
+    override fun compareTo(other: Individual): Int =
+        if (other.score != score) {
             other.score.compareTo(score)
         } else name.compareTo(other.name)
-    }
 }

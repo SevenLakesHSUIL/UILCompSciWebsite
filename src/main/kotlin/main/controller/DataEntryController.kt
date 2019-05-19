@@ -46,9 +46,7 @@ constructor(private val individualRepository: IndividualRepository) {
         return "redirect:/data/entry"
     }
 
-    private fun sortByTeamIDAsc(): Sort {
-        return Sort(Sort.Direction.ASC, "team.id")
-    }
+    private fun sortByTeamIDAsc(): Sort = Sort(Sort.Direction.ASC, "team.id")
 
     class IndiEntryDTO internal constructor(individuals: Iterable<Individual>) {
         @Valid

@@ -10,32 +10,16 @@ import javax.validation.constraints.NotBlank
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class UserDetailsImpl(@Id
+abstract class AbstractUserDetails(@Id
                                @NotBlank
                                private val username: String, @NotBlank
                                private val password: String) : UserDetails {
 
-    override fun getUsername(): String {
-        return username
-    }
+    override fun getUsername(): String = username
+    override fun getPassword(): String = password
 
-    override fun getPassword(): String {
-        return password
-    }
-
-    override fun isAccountNonExpired(): Boolean {
-        return true
-    }
-
-    override fun isAccountNonLocked(): Boolean {
-        return true
-    }
-
-    override fun isCredentialsNonExpired(): Boolean {
-        return true
-    }
-
-    override fun isEnabled(): Boolean {
-        return true
-    }
+    override fun isAccountNonExpired(): Boolean = true
+    override fun isAccountNonLocked(): Boolean = true
+    override fun isCredentialsNonExpired(): Boolean = true
+    override fun isEnabled(): Boolean = true
 }

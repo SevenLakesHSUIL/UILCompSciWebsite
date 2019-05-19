@@ -7,13 +7,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority
 import javax.persistence.Entity
 
 @Entity
-class User(username: String, password: String, private val admin: Boolean) : UserDetailsImpl(username, password) {
+class User(username: String, password: String, private val admin: Boolean) : AbstractUserDetails(username, password) {
 
-    override fun getAuthorities(): Collection<GrantedAuthority> {
-        return if (admin) {
-            immutableListOf(SimpleGrantedAuthority("ROLE_ADMIN"), SimpleGrantedAuthority("ROLE_DATA"))
-        } else {
-            immutableListOf(SimpleGrantedAuthority("ROLE_DATA"))
-        }
-    }
+    override fun getAuthorities(): Collection<GrantedAuthority> =
+            if (admin) {
+                immutableListOf(SimpleGrantedAuthority("ROLE_ADMIN"), SimpleGrantedAuthority("ROLE_DATA"))
+            } else {
+                immutableListOf(SimpleGrantedAuthority("ROLE_DATA"))
+            }
 }

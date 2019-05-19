@@ -11,7 +11,7 @@ import javax.validation.constraints.*
 
 
 @Entity
-class Team(val id: Int, password: String, @field:NotBlank var school: String, division: Division) : UserDetailsImpl("team$id", password), Comparable<Team> {
+class Team(val id: Int, password: String, @field:NotBlank var school: String, division: Division) : AbstractUserDetails("team$id", password), Comparable<Team> {
     @Enumerated(EnumType.STRING)
     @NotNull
     private var division: Division = division
@@ -38,17 +38,14 @@ class Team(val id: Int, password: String, @field:NotBlank var school: String, di
         }
     }
 
-    fun getIndividuals(): List<Individual> {
-        return individuals.toImmutableList()
-    }
+    fun getIndividuals(): List<Individual> =
+        individuals.toImmutableList()
 
-    override fun compareTo(other: Team): Int {
-        return if (other.score != score) {
+    override fun compareTo(other: Team): Int =
+        if (other.score != score) {
             other.score.compareTo(score)
         } else id.compareTo(other.id)
-    }
 
-    override fun getAuthorities(): Collection<GrantedAuthority> {
-        return immutableListOf(SimpleGrantedAuthority("ROLE_TEAM"))
-    }
+    override fun getAuthorities(): Collection<GrantedAuthority> =
+            immutableListOf(SimpleGrantedAuthority("ROLE_TEAM"))
 }
