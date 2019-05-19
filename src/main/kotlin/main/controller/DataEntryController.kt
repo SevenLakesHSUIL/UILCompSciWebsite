@@ -1,6 +1,6 @@
 package main.controller
 
-import com.google.common.collect.Lists
+import kotlinx.collections.immutable.toImmutableList
 import main.data.Individual
 import main.data.persistence.IndividualRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -52,10 +52,7 @@ constructor(private val individualRepository: IndividualRepository) {
 
     class IndiEntryDTO internal constructor(individuals: Iterable<Individual>) {
         @Valid
-        internal val individuals: List<Individual>
+        internal val individuals: List<Individual> = individuals.toImmutableList()
 
-        init {
-            this.individuals = Lists.newArrayList(individuals)
-        }
     }
 }

@@ -1,6 +1,7 @@
 package main.data
 
-import com.google.common.collect.ImmutableList
+import kotlinx.collections.immutable.immutableListOf
+import kotlinx.collections.immutable.toImmutableList
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 
@@ -38,7 +39,7 @@ class Team(val id: Int, password: String, @field:NotBlank var school: String, di
     }
 
     fun getIndividuals(): List<Individual> {
-        return individuals.toList()
+        return individuals.toImmutableList()
     }
 
     override fun compareTo(other: Team): Int {
@@ -48,6 +49,6 @@ class Team(val id: Int, password: String, @field:NotBlank var school: String, di
     }
 
     override fun getAuthorities(): Collection<GrantedAuthority> {
-        return ImmutableList.of(SimpleGrantedAuthority("ROLE_TEAM"))
+        return immutableListOf(SimpleGrantedAuthority("ROLE_TEAM"))
     }
 }

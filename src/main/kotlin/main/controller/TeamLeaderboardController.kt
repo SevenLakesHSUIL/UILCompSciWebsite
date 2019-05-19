@@ -16,10 +16,10 @@ constructor(private val teamRepository: TeamRepository) {
 
     @GetMapping("/data/teamranks")
     fun teamranks(model: Model): String {
-        val noviceRanks = teamRepository.findByDivision(Division.NOVICE).map{ TeamTotalDTO(it) }.sorted().toList()
+        val noviceRanks = teamRepository.findByDivision(Division.NOVICE).map{ TeamTotalDTO(it) }.sorted()
         model.addAttribute("noviceRanks", noviceRanks)
 
-        val advancedRanks = teamRepository.findByDivision(Division.ADVANCED).map{ TeamTotalDTO(it) }.sorted().toList()
+        val advancedRanks = teamRepository.findByDivision(Division.ADVANCED).map{ TeamTotalDTO(it) }.sorted()
         model.addAttribute("advancedRanks", advancedRanks)
         return "data/teamranks"
     }

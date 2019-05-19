@@ -14,19 +14,21 @@ version = "1.1"
 repositories {
     mavenCentral()
     maven {
-        setUrl("https://first.wpi.edu/FRC/roborio/maven/release/")
+        setUrl("https://dl.bintray.com/kotlin/kotlinx")
     }
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlinx", "kotlinx-collections-immutable", "0.1")
+
     implementation("org.springframework.boot", "spring-boot-starter-web")
     implementation("org.springframework.boot", "spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot", "spring-boot-starter-data-jpa")
     implementation("org.springframework.boot", "spring-boot-starter-security")
     implementation("org.springframework.boot", "spring-boot-devtools")
-    implementation("com.google.guava", "guava", "27.1-jre")
     implementation("org.thymeleaf.extras", "thymeleaf-extras-springsecurity5")
     implementation("com.h2database", "h2")
+
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
 }
