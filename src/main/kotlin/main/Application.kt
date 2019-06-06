@@ -1,8 +1,8 @@
 package main
 
 import main.data.Division
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -29,11 +29,8 @@ class Application {
     internal fun divisionFormatter(): Division.DivisionFormatter {
         return Division.DivisionFormatter()
     }
+}
 
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            SpringApplication.run(Application::class.java, *args)
-        }
-    }
+fun main(args: Array<String>) {
+    runApplication<Application>(*args)
 }
