@@ -10,9 +10,9 @@ import javax.validation.constraints.NotBlank
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-abstract class AbstractUserDetails(@Id
-                               @NotBlank
-                               private val username: String, @NotBlank
+abstract class UserDetails(@field:Id
+                               @field:NotBlank
+                               private val username: String, @field:NotBlank
                                private val password: String) : UserDetails {
 
     override fun getUsername(): String = username

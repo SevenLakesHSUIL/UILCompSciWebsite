@@ -2,6 +2,7 @@ package main.controller
 
 import main.data.Division
 import main.data.persistence.IndividualRepository
+import main.data.sortByScoreDesc
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Controller
@@ -22,6 +23,4 @@ constructor(private val individualRepository: IndividualRepository) {
 
         return "indiranks"
     }
-
-    private fun sortByScoreDesc(): Sort = Sort(Sort.Direction.DESC, "score")
 }

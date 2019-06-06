@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping
 @SpringBootApplication
 @Controller
 class Application {
-
     @GetMapping("/")
     fun index(): String {
         return "index"
@@ -32,7 +31,6 @@ class Application {
     }
 
     companion object {
-
         @JvmStatic
         fun main(args: Array<String>) {
             SpringApplication.run(Application::class.java, *args)

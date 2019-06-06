@@ -2,6 +2,7 @@ package main.controller
 
 import main.data.Division
 import main.data.persistence.TeamRepository
+import main.data.sortByScoreDesc
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Controller
@@ -20,9 +21,5 @@ constructor(private val teamRepository: TeamRepository) {
         val advancedRanks = teamRepository.findByDivision(Division.ADVANCED, sortByScoreDesc())
         model.addAttribute("advancedRanks", advancedRanks)
         return "progranks"
-    }
-
-    private fun sortByScoreDesc(): Sort {
-        return Sort(Sort.Direction.DESC, "score")
     }
 }

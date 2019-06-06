@@ -7,8 +7,12 @@ import javax.validation.constraints.NotNull
 import java.time.LocalDateTime
 
 @Entity
-class Individual internal constructor(@field:NotNull
-                                      var name: String, team: Team, division: Division) : Comparable<Individual> {
+class Individual internal constructor(
+        @field:NotNull
+        var name: String,
+        team: Team,
+        division: Division
+) : Comparable<Individual> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private val id: Int = 0

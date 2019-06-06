@@ -11,7 +11,7 @@ import javax.validation.constraints.*
 
 
 @Entity
-class Team(val id: Int, password: String, @field:NotBlank var school: String, division: Division) : AbstractUserDetails("team$id", password), Comparable<Team> {
+class Team(val id: Int, password: String, @field:NotBlank var school: String, division: Division) : UserDetails("team$id", password), Comparable<Team> {
     @Enumerated(EnumType.STRING)
     @NotNull
     private var division: Division = division
@@ -22,7 +22,7 @@ class Team(val id: Int, password: String, @field:NotBlank var school: String, di
             }
         }
 
-    @Min(0)
+    @Min(-240)
     @Max(1440)
     var score: Int = 0
 
@@ -33,7 +33,7 @@ class Team(val id: Int, password: String, @field:NotBlank var school: String, di
 
     init {
         this.individuals = ArrayList(3)
-        for (i in 0..2) {
+        for (i: Int in 0..2) {
             individuals.add(Individual("", this, division))
         }
     }

@@ -24,10 +24,10 @@ constructor(private val teamRepository: TeamRepository) {
         return "data/teamranks"
     }
 
-    private class TeamTotalDTO internal constructor(t: Team) : Comparable<TeamTotalDTO> {
+    private class TeamTotalDTO internal constructor(private val t: Team) : Comparable<TeamTotalDTO> {
         override fun compareTo(other: TeamTotalDTO): Int {
             return if(score != other.score) {
-                Integer.compare(score, other.score)
+                score.compareTo(other.score)
             } else {
                 if(school != other.school) {
                     school.compareTo(other.school)
@@ -37,9 +37,11 @@ constructor(private val teamRepository: TeamRepository) {
             }
         }
 
-        val score: Int = t.score + t.getIndividuals().map { it.score }.sum()
-        @NotBlank
-        val school: String = t.school
-        val id: Int = t.id
+        val score: Int
+            get() = t.score + t.getIndividuals().map { it.score }.sum()
+        val school: String
+            get() = t.school
+        val id: Int
+            get() = t.id
     }
 }
