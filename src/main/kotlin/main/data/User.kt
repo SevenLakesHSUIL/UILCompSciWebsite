@@ -1,18 +1,25 @@
 package main.data
 
-import kotlinx.collections.immutable.immutableListOf
+import kotlinx.collections.immutable.persistentListOf
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 
 import javax.persistence.Entity
 
 @Entity
-class User(username: String, password: String, private val admin: Boolean) : UserDetails(username, password) {
+class User(username: String, password: String, private val isAdmin: Boolean) : UserDetails(username, password) {
 
     override fun getAuthorities(): Collection<GrantedAuthority> =
-        if (admin) {
-            immutableListOf(SimpleGrantedAuthority("ROLE_ADMIN"), SimpleGrantedAuthority("ROLE_DATA"))
+        if (isAdmin) {
+            ADMIN_ROLES
         } else {
-            immutableListOf(SimpleGrantedAuthority("ROLE_DATA"))
+            DATA_ROLES
         }
+
+    companion object {
+        @JvmStatic
+        private val ADMIN_ROLES = persistentListOf(SimpleGrantedAuthority("ROLE_ADMIN"), SimpleGrantedAuthority("ROLE_DATA"))
+        @JvmStatic
+        private val DATA_ROLES = persistentListOf(SimpleGrantedAuthority("ROLE_DATA"))
+    }
 }

@@ -41,7 +41,6 @@ constructor(private val individualRepository: IndividualRepository) {
                 individualRepository.save(i)
             } catch (ignored: ObjectOptimisticLockingFailureException) {
             }
-
         }
         return "redirect:/data/entry"
     }
@@ -50,7 +49,6 @@ constructor(private val individualRepository: IndividualRepository) {
 
     class IndiEntryDTO internal constructor(individuals: Iterable<Individual>) {
         @Valid
-        internal val individuals: List<Individual> = individuals.toImmutableList()
-
+        val individuals: List<Individual> = individuals.toImmutableList()
     }
 }

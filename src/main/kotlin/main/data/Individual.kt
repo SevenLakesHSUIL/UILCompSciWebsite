@@ -8,14 +8,18 @@ import java.time.LocalDateTime
 
 @Entity
 class Individual internal constructor(
-        @field:NotNull
-        var name: String,
-        team: Team,
-        division: Division
+    @field:NotNull
+    var name: String,
+    team: Team,
+    division: Division
 ) : Comparable<Individual> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private val id: Int = 0
+
+    @Version
+    private val timestamp: LocalDateTime? = null
+
     @Min(-80)
     @Max(240)
     var score: Int = 0
@@ -30,9 +34,6 @@ class Individual internal constructor(
     @JoinColumn(name = "team_id")
     var team: Team
         internal set
-
-    @Version
-    val timestamp: LocalDateTime? = null
 
     init {
         this.team = team

@@ -2,7 +2,6 @@ package main.data
 
 import org.springframework.format.Formatter
 
-import java.text.ParseException
 import java.util.Locale
 
 enum class Division {

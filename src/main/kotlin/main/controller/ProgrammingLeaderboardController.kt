@@ -4,7 +4,6 @@ import main.data.Division
 import main.data.persistence.TeamRepository
 import main.data.sortByScoreDesc
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
