@@ -47,16 +47,14 @@ spotless {
     }
 }
 
-tasks.withType<Jar> {
-    baseName = "uilcompsciwebsite"
+configure<JavaPluginConvention> {
+    sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+tasks.withType<KotlinCompile>().configureEach {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+tasks.withType<Wrapper>().configureEach {
+    gradleVersion = "5.5.1"
 }
