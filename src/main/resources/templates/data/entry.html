@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="common/header :: common-header"/>
+<div th:replace="common/header :: common-header"></div>
 
 <body>
-<div th:replace="common/navbar :: common-navbar"/>
+<div th:replace="common/navbar :: common-navbar"></div>
 <div class="container">
     <form action="#" class="form-data" th:action="@{/data/entry}" th:object="${indiEntryDTO}" method="post">
         <div class="text-center m-3">
@@ -21,16 +21,19 @@
                     <!-- Filters -->
                     <tr>
                         <th scope="col">Filters</th>
-                        <th scope="col"><input id="teamnum" class="form-control" type="number" oninput="filter();"></th>
-                        <th scope="col"><input id="schoolname" class="form-control" type="text" oninput="filter();"></th>
-                        <th scope="col"><input id="studentname" class="form-control" type="text" oninput="filter();"></th>
+                        <th scope="col"><label for="teamnum"></label><input id="teamnum" class="form-control"
+                                                                            type="number" oninput="filter();"></th>
+                        <th scope="col"><label for="schoolname"></label><input id="schoolname" class="form-control"
+                                                                               type="text" oninput="filter();"></th>
+                        <th scope="col"><label for="studentname"></label><input id="studentname" class="form-control"
+                                                                                type="text" oninput="filter();"></th>
                         <th scope="col">N/A</th>
                         <th scope="col">
-                            <select id="aon" class="form-control" oninput="filter();">
-                                <option value="All" selected>All</option>
-                                <option value="Advanced">Adv</option>
-                                <option value="Novice">Nov</option>
-                            </select>
+                            <label for="aon"></label><select id="aon" class="form-control" oninput="filter();">
+                            <option value="All" selected>All</option>
+                            <option value="Advanced">Adv</option>
+                            <option value="Novice">Nov</option>
+                        </select>
                         </th>
                     </tr>
                     <tr>
@@ -50,7 +53,11 @@
                             <td th:text="${person.team.id}">73</td>
                             <td th:text="${person.team.school}">Seven Lakes High School</td>
                             <td th:text="${person.name}">Quy Nguyen</td>
-                            <td><input type="text" class="form-control" th:style="${#fields.hasErrors('individuals[__${personStat.index}__].score')} ? 'background-color: #ff3e3e' : ''" th:field="*{individuals[__${personStat.index}__].score}"/></td>
+                            <td><label>
+                                <input type="text" class="form-control"
+                                       th:style="${#fields.hasErrors('individuals[__${personStat.index}__].score')} ? 'background-color: #ff3e3e' : ''"
+                                       th:field="*{individuals[__${personStat.index}__].score}"/>
+                            </label></td>
                             <td th:text="${{person.division}}">Advanced</td>
                         </tr>
                     </th:block>
@@ -58,26 +65,26 @@
                     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                 </table>
                 <script>
-					function filter() {
-						var tn = $("#teamnum").val();
-						var sn = $("#schoolname").val();
-						var stn = $("#studentname").val();
-						var aon = $("#aon").val();
-						// Gets the filters from the inputs
+                    function filter() {
+                        var tn = $("#teamnum").val();
+                        var sn = $("#schoolname").val();
+                        var stn = $("#studentname").val();
+                        var aon = $("#aon").val();
+                        // Gets the filters from the inputs
 
-						// Goes through each row and checks to see if the info matches the filters
-						$("#entrytable tbody tr").each(function() {
-							var stdata = [];
-							$(this).children("td").each(function(i) {
-								stdata[i] = $(this).html();
-							});
-							if ((tn === "" || tn == stdata[1]) && (sn === "" || stdata[2].toUpperCase().includes(sn.toUpperCase())) && (stn === "" || stdata[3].toUpperCase().includes(stn.toUpperCase())) && (aon == "All" || stdata[5] == aon))
-								$(this).show();
-							else
-								$(this).hide();
-						});
-					}
-				</script>
+                        // Goes through each row and checks to see if the info matches the filters
+                        $("#entrytable tbody tr").each(function () {
+                            var stdata = [];
+                            $(this).children("td").each(function (i) {
+                                stdata[i] = $(this).html();
+                            });
+                            if ((tn === "" || tn === stdata[1]) && (sn === "" || stdata[2].toUpperCase().includes(sn.toUpperCase())) && (stn === "" || stdata[3].toUpperCase().includes(stn.toUpperCase())) && (aon == "All" || stdata[5] == aon))
+                                $(this).show();
+                            else
+                                $(this).hide();
+                        });
+                    }
+                </script>
             </div>
         </div>
     </form>

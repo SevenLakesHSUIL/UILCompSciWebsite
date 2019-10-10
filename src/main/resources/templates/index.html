@@ -1,24 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head th:replace="common/header :: common-header"/>
+<div th:replace="common/header :: common-header"></div>
 
 <body>
-    <div th:replace="common/navbar :: common-navbar"/>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <h1 class="display-4">SLHS UIL Computer Science Contest</h1>
-            <p class="lead">Welcome to the SLHS UIL Computer Science Contest.<br>Please fill out your online registration as soon as possible.<br>Then, install PC<sup>2</sup> and submit your dryrun to get started!</p>
-            <p>
-                <a class="btn btn-lg btn-primary mb-2" href="/downloads" role="button">Downloads &raquo;</a>
-                <a sec:authorize="hasAuthority('ROLE_TEAM')" class="btn btn-lg btn-primary mb-2" href="/team/register" role="button">Team Registration &raquo;</a>
-                <a sec:authorize="hasAuthority('ROLE_DATA')" class="btn btn-lg btn-primary mb-2" href="/data/entry" role="button">Data Entry &raquo;</a>
-                <a sec:authorize="hasAuthority('ROLE_DATA')" class="btn btn-lg btn-primary mb-2" href="/data/teamranks" role="button">Team Leaderboards &raquo;</a>
-                <!--<a sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-lg btn-primary mb-2" href="/admin/settings" role="button">Admin Page &raquo;</a>-->
-                <a sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-lg btn-primary mb-2" href="/h2/" role="button">Database Access &raquo;</a>
-                <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary mb-2" href="/login" role="button">Log In &raquo;</a>
-            </p>
-        </div>
+<div th:replace="common/navbar :: common-navbar"></div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">SLHS UIL Computer Science Contest</h1>
+        <p class="lead">Welcome to the SLHS UIL Computer Science Contest.<br>Please fill out your online registration as
+            soon as possible.<br>Then, install PC<sup>2</sup> and submit your dryrun to get started!</p>
+        <p>
+            <a class="btn btn-lg btn-primary mb-2" th:href="@{/downloads}" role="button">Downloads &raquo;</a>
+            <a sec:authorize="hasAuthority('ROLE_TEAM')" class="btn btn-lg btn-primary mb-2" th:href="@{/team/register}"
+               role="button">Team Registration &raquo;</a>
+            <a sec:authorize="hasAuthority('ROLE_DATA')" class="btn btn-lg btn-primary mb-2" th:href="@{/data/entry}"
+               role="button">Data Entry &raquo;</a>
+            <a sec:authorize="hasAuthority('ROLE_DATA')" class="btn btn-lg btn-primary mb-2"
+               th:href="@{/data/teamranks}" role="button">Team Leaderboards &raquo;</a>
+            <a sec:authorize="hasAuthority('ROLE_ADMIN')" class="btn btn-lg btn-primary mb-2" th:href="@{/h2/}"
+               role="button">Database Access &raquo;</a>
+            <a sec:authorize="!isAuthenticated()" class="btn btn-lg btn-primary mb-2" th:href="@{/login}" role="button">Log
+                In &raquo;</a>
+        </p>
     </div>
+</div>
 </body>
 </html>

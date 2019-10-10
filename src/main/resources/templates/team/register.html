@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <div th:include="common/header :: common-header" th:remove="tag"/>
-    <link href="../static/css/data.css" rel="stylesheet" th:href="@{/css/data.css}"/>
-</head>
+<div>
+    <div th:include="common/header :: common-header" th:remove="tag"></div>
+    <link th:href="@{/css/data.css}"/>
+</div>
 
 <body>
-<div th:replace="common/navbar :: common-navbar"/>
+<div th:replace="common/navbar :: common-navbar"></div>
 
 <form action="#" class="form-data" th:action="@{/team/register}" th:object="${team}" method="post">
     <h1 class="h3 font-weight-normal text-center">Please Register</h1>

@@ -1,6 +1,6 @@
 package main.data
 
-import kotlinx.collections.immutable.immutableListOf
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -46,5 +46,5 @@ class Team(val id: Int, password: String, @field:NotBlank var school: String, di
         } else id.compareTo(other.id)
 
     override fun getAuthorities(): Collection<GrantedAuthority> =
-            immutableListOf(SimpleGrantedAuthority("ROLE_TEAM"))
+            persistentListOf(SimpleGrantedAuthority("ROLE_TEAM"))
 }
