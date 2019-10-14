@@ -13,7 +13,7 @@ import javax.validation.constraints.*
 class Team(val id: Int, password: String, @field:NotBlank var school: String, division: Division) : UserDetails("team$id", password), Comparable<Team> {
     @Enumerated(EnumType.STRING)
     @NotNull
-    private var division: Division = division
+    var division: Division = division
         set(division) {
             field = division
             for (i in individuals) {
@@ -21,9 +21,12 @@ class Team(val id: Int, password: String, @field:NotBlank var school: String, di
             }
         }
 
-    @Min(-240)
-    @Max(1440)
+    @Min(0)
+    @Max(720)
     var score: Int = 0
+
+    @Min(0)
+    var prestige: Int = 0
 
     @NotNull
     @Size(max = 3)
@@ -38,12 +41,12 @@ class Team(val id: Int, password: String, @field:NotBlank var school: String, di
     }
 
     fun getIndividuals(): List<Individual> =
-        individuals.toImmutableList()
+            individuals.toImmutableList()
 
     override fun compareTo(other: Team): Int =
-        if (other.score != score) {
-            other.score.compareTo(score)
-        } else id.compareTo(other.id)
+            if (other.score != score) {
+                other.score.compareTo(score)
+            } else id.compareTo(other.id)
 
     override fun getAuthorities(): Collection<GrantedAuthority> =
             persistentListOf(SimpleGrantedAuthority("ROLE_TEAM"))

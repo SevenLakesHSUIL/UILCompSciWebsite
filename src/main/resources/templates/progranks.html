@@ -26,12 +26,14 @@
                 </thead>
                 <tbody>
                 <th:block th:each="team, teamStat : ${noviceRanks}">
-                    <tr>
-                        <td th:text="${teamStat.count}">1</td>
-                        <td th:text="${team.id}">112</td>
-                        <td th:text="${team.school}">Seven Lakes High School</td>
-                        <td th:text="${team.score}">120</td>
-                    </tr>
+                    <div th:if="${team.school != 'Please Contact Us'}">
+                        <tr>
+                            <td th:text="${teamStat.count}">1</td>
+                            <td th:text="${team.id}">112</td>
+                            <td th:text="${team.school}">Seven Lakes High School</td>
+                            <td th:text="${team.score}">120</td>
+                        </tr>
+                    </div>
                 </th:block>
                 </tbody>
             </table>
@@ -49,12 +51,14 @@
                 </thead>
                 <tbody>
                 <th:block th:each="team, teamStat : ${advancedRanks}">
-                    <tr>
-                        <td th:text="${teamStat.count}">1</td>
-                        <td th:text="${team.id}">112</td>
-                        <td th:text="${team.school}">Seven Lakes High School</td>
-                        <td th:text="${team.score}">120</td>
-                    </tr>
+                    <div th:if="${team.school != 'Please Contact Us'}">
+                        <tr>
+                            <td th:text="${teamStat.count}">1</td>
+                            <td th:text="${team.id}">112</td>
+                            <td th:text="${team.school}">Seven Lakes High School</td>
+                            <td th:text="${team.score}">120</td>
+                        </tr>
+                    </div>
                 </th:block>
                 </tbody>
             </table>

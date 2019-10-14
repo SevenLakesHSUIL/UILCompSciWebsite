@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="common/header :: common-header"></div>
+
+<body>
+<div th:replace="common/navbar :: common-navbar"></div>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h3 class="display-3">Prestige Leaderboards</h3>
+        <p class="lead">Note: Leaderboards may not be 100% accurate and do not accurately reflect ties.</p>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h4>Rankings:</h4>
+            <table class="table">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Team Number</th>
+                    <th scope="col">Team School</th>
+                    <th scope="col">Prestige Points</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="team, teamStat : ${ranks}">
+                    <div th:if="${team.school != 'Please Contact Us'}">
+                        <tr>
+                            <td th:text="${teamStat.count}">1</td>
+                            <td th:text="${team.id}">112</td>
+                            <td th:text="${team.school}">Seven Lakes High School</td>
+                            <td th:text="${team.prestige}">35</td>
+                        </tr>
+                    </div>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

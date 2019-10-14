@@ -10,6 +10,7 @@
                 <a class="nav-item nav-link" th:href="@{/downloads}">Downloads</a>
                 <a class="nav-item nav-link" th:href="@{/progranks}">Programming Leaderboards</a>
                 <a class="nav-item nav-link" th:href="@{/indiranks}">Individual Leaderboards</a>
+                <a class="nav-item nav-link" th:href="@{/presranks}">Prestige Leaderboards</a>
             </div>
         </div>
         <div class="navbar-nav navbar-right">
@@ -28,7 +29,7 @@
                 </form>
             </div>
             <div sec:authorize="!isAuthenticated()">
-                <form th:action="@{/login}" method="post" class="form-inline my-0">
+                <form th:action="@{/login}" method="get" class="form-inline my-0">
                     <button type="submit" class="btn btn-light">Log In</button>
                 </form>
             </div>

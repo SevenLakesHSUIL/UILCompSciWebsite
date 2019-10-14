@@ -10,18 +10,48 @@
         <h3 class="display-3">Downloads</h3>
         <p class="lead">If downloads appear to be stuck at 100%, wait 30-60 seconds, then ask for help.</p>
         <div class="btn-group" role="group" aria-label="Utility Downloads">
-            <a class="btn btn-info" th:href="@{/files/eclipse.exe}" download>Eclipse</a>
-            <a class="btn btn-info" th:href="@{/files/intellij.exe}" download>IntelliJ</a>
-            <a class="btn btn-info" th:href="@{/files/jdk.exe}" download>Java 8</a>
-            <a class="btn btn-info" th:href="@{/files/pc2.zip}" download>PC<sup>2</sup></a>
-            <a class="btn btn-info" th:href="@{/files/dryrun.pdf}" download>DryRun</a>
-            <a class="btn btn-info" th:href="@{/files/dryrun.dat}" download>DryRun Data</a>
+            <div class="dropdown">
+                <button type="button" class="btn btn-info dropdown-toggle" id="eclipseMenu" data-toggle="dropdown">
+                    Eclipse
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="eclipseMenu">
+                    <a class="dropdown-item" th:href="@{/files/eclipse-java-2019-09-R-win32-x86_64.zip}">Windows</a></li>
+                    <a class="dropdown-item" th:href="@{/files/eclipse-java-2019-09-R-macosx-cocoa-x86_64.dmg}">Mac OS</a></li>
+                    <a class="dropdown-item" th:href="@{/files/eclipse-java-2019-09-R-linux-gtk-x86_64.tar}">Linux</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button type="button" class="btn btn-info dropdown-toggle" id="intellijMenu" data-toggle="dropdown">
+                    IntelliJ
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="intellijMenu">
+                    <a class="dropdown-item" th:href="@{/files/ideaIC-2019.2.3.exe}">Windows</a></li>
+                    <a class="dropdown-item" th:href="@{/files/ideaIC-2019.2.3.dmg}">Mac OS</a></li>
+                    <a class="dropdown-item" th:href="@{/files/ideaIC-2019.2.3.tar}">Linux</a></li>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button type="button" class="btn btn-info dropdown-toggle" id="jdkMenu" data-toggle="dropdown">
+                    Java 8 JDK
+                    <span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="jdkMenu">
+                    <a class="dropdown-item" th:href="@{/files/jdk-8u221-windows-x64.exe}">Windows</a></li>
+                    <a class="dropdown-item" th:href="@{/files/jdk-8u221-macosx-x64.dmg}">Mac OS</a></li>
+                    <a class="dropdown-item" th:href="@{/files/jdk-8u221-linux-x64.tar}">Linux</a></li>
+                </div>
+            </div>
         </div>
         <div class="btn-group" role="group" aria-label="Contest Downloads">
-            <a class="btn btn-info" th:href="@{/files/contestpacket.pdf}" download>Contest</a>
+            <a class="btn btn-info" th:href="@{/files/PC2_TEAM.zip}" download>PC<sup>2</sup></a>
+            <a class="btn btn-info" th:href="@{/files/dryrun.in}" download>DryRun Data</a>
+        </div>
+        <div class="btn-group" role="group" aria-label="Contest Downloads">
             <a class="btn btn-info" th:href="@{/files/contestdata.zip}" download>Contest Data</a>
             <a class="btn btn-info" th:href="@{/files/writtentest.pdf}" download>Written Test</a>
-            <a class="btn btn-info" th:href="@{/files/writtenkey.rar}" download>Test Key</a>
+            <a class="btn btn-info" th:href="@{/files/writtenkey.pdf}" download>Test Key</a>
         </div>
     </div>
 </div>
