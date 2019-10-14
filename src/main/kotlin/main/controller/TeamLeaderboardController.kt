@@ -24,7 +24,7 @@ constructor(private val teamRepository: TeamRepository) {
     private class TeamTotalDTO internal constructor(private val t: Team) : Comparable<TeamTotalDTO> {
         override fun compareTo(other: TeamTotalDTO): Int {
             return if (score != other.score) {
-                score.compareTo(other.score)
+                other.score.compareTo(score)
             } else {
                 if (school != other.school) {
                     school.compareTo(other.school)
