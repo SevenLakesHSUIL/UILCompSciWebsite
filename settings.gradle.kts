@@ -1,1 +1,1 @@
-rootProject.name = "UILCompSciWebsite"
+rootProject.name = "uilcompsciwebsite"
