@@ -38,7 +38,6 @@ class Application {
 @Configuration
 class StaticResourceConfigurer : WebMvcConfigurer {
     override fun configurePathMatch(configurer: PathMatchConfigurer) {
-        super.configurePathMatch(configurer)
         configurer.isUseSuffixPatternMatch = false
     }
 
